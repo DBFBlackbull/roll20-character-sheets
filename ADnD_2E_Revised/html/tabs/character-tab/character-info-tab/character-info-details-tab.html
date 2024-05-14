@@ -93,49 +93,8 @@
         <hr>
         <h4>Experience</h4>
         <div class="sheet-2colrow">
-            insert_experience.html_(1)
-            <div class="sheet-col">
-                <fieldset class="repeating_XP2" name="attr_repxp2">
-                    <table>
-                        <tr>
-                            <td>
-                                <h5>Class:</h5>
-                                <input type="text" name="attr_expclassname2" title="@{repeating_XP2_$X_expclassname2}" class="sheet-chrome" list="classes">
-                                <input type="text" name="attr_expclassname2" title="@{repeating_XP2_$X_expclassname2}" class="sheet-firefox" list="classes-ff"><span></span>
-                            </td>
-                            <td>
-                                <h5>To Next:</h5>
-                                <input type="text" name="attr_expnextlevel2" title="@{repeating_XP2_$X_expnextlevel2}">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Current Exp:</h5>
-                                <input type="text" name="attr_expcurrent2" title="@{repeating_XP2_$X_expcurrent2}" value="0">
-                            </td>
-                            <td>
-                                <h5>Gained Exp:</h5><input type="text" name="attr_expgain2" title="@{repeating_XP2_$X_expgain2}" value="0">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>New Exp Total:</h5>
-                                <input type="text" name="attr_expnew2" title="@{repeating_XP2_$X_expnew2}" value="@{expcurrent2}+@{expgain2}" disabled>
-                            </td>
-                            <td>
-                                <h5>Prime Req Exp Total:</h5>
-                                <input type="text" name="attr_expprime2" title="@{repeating_XP2_$X_expprime2}" value="@{expcurrent2}+round(@{expgain2}*(1+(@{prime2}/100)))" disabled>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h5>Prime Requisite Bonus:</h5>
-                                <input type="text" name="attr_prime2" title="@{repeating_XP2_$X_prime2}" class="sheet-short" value="10"><b>%</b>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </div>
+            insert_experience.html_(1,)
+            insert_experience.html_(2,2)
         </div>
         <br>
         <h4>Experience Notes:</h4>
