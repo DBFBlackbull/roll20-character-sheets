@@ -2,42 +2,48 @@
     <fieldset class="repeating_XP#REPLACE1#" name="attr_repxp#REPLACE1#">
         <table>
             <tr>
-                <td>
+                <td colspan="3">
                     <h5>Class:</h5>
                     <input type="text" name="attr_expclassname#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expclassname#REPLACE1#}" class="sheet-chrome" list="classes">
                     <input type="text" name="attr_expclassname#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expclassname#REPLACE1#}" class="sheet-firefox" list="classes-ff"><span></span>
                 </td>
-                <td>
-                    <h5>To Next:</h5>
-                    <input type="text" name="attr_expnextlevel#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expnextlevel#REPLACE1#}">
-                </td>
             </tr>
             <tr>
-                <td>
-                    <h5>Current Exp:</h5>
-                    <input type="text" name="attr_expcurrent#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_expcurrent#REPLACE0#}" value="0">
-                </td>
-                <td>
-                    <h5>Gained Exp:</h5>
-                    <input type="text" name="attr_expgain#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_expgain#REPLACE0#}" value="0">
-                </td>
+                <td><h5>Current Exp:</h5></td>
+                <td></td>
+                <td><h5>To Next Level:</h5></td>
             </tr>
             <tr>
-                <td>
-                    <h5>New Exp Total:</h5>
-                    <input type="text" name="attr_expnew#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expnew#REPLACE1#}" value="@{expcurrent#REPLACE0#}+@{expgain#REPLACE0#}" disabled>
-                </td>
-                <td>
-                    <h5>Prime Req Exp Total:</h5>
-                    <input type="text" name="attr_expprime#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expprime#REPLACE1#}" value="@{expcurrent#REPLACE0#}+round(@{expgain#REPLACE0#}*(1+(@{prime#REPLACE0#}/100)))" disabled>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h5>Prime Requisite Bonus:</h5>
-                    <input type="text" name="attr_prime#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_prime#REPLACE0#}" class="sheet-short" value="10"><b>%</b>
-                </td>
+                <td><input type="text" class="sheet-midishtext" name="attr_expcurrent#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_expcurrent#REPLACE0#}" value="0"></td>
+                <td><b>/</b></td>
+                <td><input type="text" class="sheet-midishtext" name="attr_expnextlevel#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expnextlevel#REPLACE1#}"></td>
             </tr>
         </table>
+        <details>
+            <summary><h5 style="display: inline;">Update Exp</h5></summary>
+            <table>
+                <tr>
+                    <td><h5>Current Exp:</h5></td>
+                    <td><input type="text" class="sheet-midishtext" name="attr_expcurrent#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_expcurrent#REPLACE0#}" value="0" readonly></td>
+                </tr>
+                <tr>
+                    <td><h5>Gained Exp:</h5></td>
+                    <td><input type="text" class="sheet-midishtext" name="attr_expgain#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_expgain#REPLACE0#}" value="0"></td>
+                </tr>
+                <tr>
+                    <td><h5 style="display: inline;">Prime Requisite Bonus</h5> <input type="text" name="attr_prime#REPLACE0#" title="@{repeating_XP#REPLACE1#_$X_prime#REPLACE0#}" class="sheet-minish" value="10"><h5 style="display: inline;">%:&ensp;</h5></td>
+                    <td><input type="text" class="sheet-midishtext" name="attr_expgainprime" title="@{repeating_XP#REPLACE1#_$X_expgainprime}" value="0" readonly></td>
+                </tr>
+                <tr>
+                    <td><h5>New Exp Total:</h5></td>
+                    <td><input type="text" class="sheet-midishtext" name="attr_expnew#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expnew#REPLACE1#}" value="@{expcurrent#REPLACE0#}+@{expgain#REPLACE0#}" disabled></td>
+                </tr>
+            </table>
+        </details>
+<!--                <td>-->
+<!--                    <h5>Prime Req Exp Total:</h5>-->
+<!--                    <input type="text" name="attr_expprime#REPLACE1#" title="@{repeating_XP#REPLACE1#_$X_expprime#REPLACE1#}" value="@{expcurrent#REPLACE0#}+round(@{expgain#REPLACE0#}*(1+(@{prime#REPLACE0#}/100)))" disabled>-->
+<!--                </td>-->
+        <hr>
     </fieldset>
 </div>
