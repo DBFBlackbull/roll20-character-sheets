@@ -1,7 +1,7 @@
 // --- Version change start --- //
 
 const SHEET_NAME = 'AD&D 2E Revised';
-const SHEET_VERSION = '4.20.1';
+const SHEET_VERSION = '4.21.0';
 
 on('sheet:opened', function(){
     getAttrs(['character_sheet'],function(attrs){
@@ -39,6 +39,10 @@ on('sheet:opened', function(){
 
             if (oldSheetVersion.isBelowMigrate(4, 18, 0))
                 migrate4_18_0();
+
+            if (oldSheetVersion.isBelowMigrate(4, 21, 0)) {
+                migrate_4_21_0();
+            }
         }
     });
 });
@@ -86,7 +90,77 @@ function moveStaticToRepeating(section, fieldsToMove) {
 }
 //#endregion
 
-//#region verison 4.18.0
+//#region version 4.21.0
+function migrate_4_21_0() {
+    console.log('Migrate to v4.21.0');
+    // Move exp to properly named fields
+
+    function moveXP2ToXP() {
+        // Moved xp2 to xp1 section
+        TAS.repeating('xp2')
+            .fields('expclassname2','expcurrent2','expnextlevel2','expgain2','prime2')
+            .reduce( function (memo, row) {
+                console.log(`Moving repeating XP2: '${row.S['expclassname2']}' to XP`)
+                let newValue = {
+                    classname: row.S['expclassname2'].trim(),
+                    current: row.S['expcurrent2'].trim(),
+                    nextlevel: row.S['expnextlevel2'].trim(),
+                    gain: row.S['expgain2'].trim(),
+                    prime: row.S['prime2'].trim()
+                };
+                removeRepeatingRow(`repeating_xp2_${row.id}`);
+                if (newValue.classname ||
+                    newValue.current ||
+                    newValue.nextlevel ||
+                    newValue.gain ||
+                    newValue.prime) {
+                    memo.push(newValue);
+                }
+                return memo;
+            }, [], function (memo) {
+                let newValue = {};
+                memo.forEach(row => {
+                    let newrowid = generateRowID();
+                    newValue[`repeating_xp_${newrowid}_expclassname`] = row.classname;
+                    newValue[`repeating_xp_${newrowid}_expcurrent`] = row.current;
+                    newValue[`repeating_xp_${newrowid}_expnextlevel`] = row.nextlevel;
+                    newValue[`repeating_xp_${newrowid}_expgain`] = row.gain;
+                    newValue[`repeating_xp_${newrowid}_prime`] = row.prime;
+                });
+                setAttrs(newValue);
+            })
+            .execute();
+    }
+
+    TAS.repeating('xp')
+        .fields('expcurrent','expcurrent1','expgain','expgain1','prime','prime1')
+        .each(function (row) {
+            let current = row.S['expcurrent1'].trim();
+            if (current && current !== '0') {
+                console.log('Moved expcurrent1 to expcurrent');
+                row.S['expcurrent1'] = '';
+                row.S['expcurrent'] = current;
+            }
+
+            let gain = row.S['expgain1'].trim();
+            if (gain && gain !== '0') {
+                console.log('Moved expgain1 to expgain');
+                row.S['expgain1'] = '';
+                row.S['expgain'] = gain;
+            }
+
+            let prime = row.S['prime1'].trim();
+            if (prime && prime !== '10') {
+                console.log('Moved prime1 to prime');
+                row.S['prime1'] = '';
+                row.S['prime'] = prime;
+            }
+        })
+        .execute(moveXP2ToXP);
+}
+//#endregion
+
+//#region version 4.18.0
 function migrate4_18_0() {
     console.log('Migrate to v4.18.0');
     TAS.repeating('hench5')
@@ -170,6 +244,7 @@ function migrate4_16_0() {
         setAttrs(newValue, {silent: true});
     });
 }
+//#endregion
 
 //#region version 4.3.0
 let oldCurrencySections = [['2', 'Dragonlance'], ['3', 'Dark Sun'], ['4', 'Ravenloft'], ['5', 'Maztica'], ['6', 'BirthRight']];
