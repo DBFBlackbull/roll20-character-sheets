@@ -738,6 +738,12 @@ table.sheet-padding-right-column2 td:nth-child(2) {
     flex-direction: column;
 }
 
+.sheet-experience .repcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .sheet-spell-line {
     display: flex;
     align-items: flex-end;
