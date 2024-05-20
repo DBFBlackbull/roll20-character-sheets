@@ -739,9 +739,9 @@ table.sheet-padding-right-column2 td:nth-child(2) {
 }
 
 .sheet-experience .repcontainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 2em;
 }
 
 .sheet-spell-line {

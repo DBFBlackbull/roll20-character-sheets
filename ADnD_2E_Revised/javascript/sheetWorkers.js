@@ -892,6 +892,48 @@ on('clicked:opendoor-check', function (eventInfo){
 });
 //#endregion
 
+//#region Experience logic
+const REPEATING_XP = `repeating_xp`;
+const XP_FIELDS = ['expcurrent', 'expgain', 'prime'];
+on(XP_FIELDS.map(f => `change:${REPEATING_XP}:${f}`).join(' '), function (eventInfo) {
+    if (isSheetWorkerUpdate(eventInfo)) {
+        return;
+    }
+    console.log('exp change happened');
+    getAttrs(XP_FIELDS.map(f => `${REPEATING_XP}_${f}`), function (values) {
+        let current = parseFloat(values[`${REPEATING_XP}_expcurrent`]);
+        let gained = parseFloat(values[`${REPEATING_XP}_expgain`]);
+        let prime = parseInt(values[`${REPEATING_XP}_prime`]);
+
+        console.log({
+            current,
+            gained,
+            prime,
+        });
+
+        if (prime < 0) {
+            return showToast(ERROR, 'Invalid Bonus', 'Prime requisite bonus cannot be negative.');
+        }
+
+        let newValue = {};
+        if (gained === 0) {
+            newValue[`${REPEATING_XP}_expgainprime`];
+            newValue[`${REPEATING_XP}_expnew`] = current;
+            return setAttrs(newValue);
+        }
+
+        let bonus = 0;
+        if (gained > 0) {
+            bonus = Math.round(gained * prime / 100);
+        }
+
+        newValue[`${REPEATING_XP}_expgainprime`] = bonus;
+        newValue[`${REPEATING_XP}_expnew`] = current + gained + bonus;
+        setAttrs(newValue);
+    });
+});
+//#endregion
+
 //#region Saving throws autofill
 on('clicked:saving-throws-character', function (eventInfo) {
     const ravenloftTab = 'tab2';
