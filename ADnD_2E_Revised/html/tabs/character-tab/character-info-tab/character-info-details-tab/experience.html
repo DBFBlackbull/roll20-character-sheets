@@ -14,9 +14,9 @@
                 <td><h5>To Next Level:</h5></td>
             </tr>
             <tr>
-                <td><input type="text" class="sheet-midishtext" name="attr_expcurrent" title="@{repeating_XP_$X_expcurrent}" value="0"></td>
+                <td><input type="number" pattern="[0-9]" class="sheet-midishtext" name="attr_expcurrent" title="@{repeating_XP_$X_expcurrent}" value="0"></td>
                 <td><b>/</b></td>
-                <td><input type="text" class="sheet-midishtext" name="attr_expnextlevel" title="@{repeating_XP_$X_expnextlevel}"></td>
+                <td><input type="number" pattern="[0-9]" class="sheet-midishtext" name="attr_expnextlevel" title="@{repeating_XP_$X_expnextlevel}"></td>
             </tr>
         </table>
         <details>
@@ -24,11 +24,11 @@
             <table>
                 <tr>
                     <td><h5>Current Exp:</h5></td>
-                    <td><input type="text" class="sheet-midishtext" name="attr_expcurrent" title="@{repeating_XP_$X_expcurrent}" value="0" readonly></td>
+                    <td><input type="number" class="sheet-midishtext" name="attr_expcurrent" title="@{repeating_XP_$X_expcurrent}" value="0" readonly></td>
                 </tr>
                 <tr>
                     <td><h5>Gained Exp:</h5></td>
-                    <td><input type="text" class="sheet-midishtext" name="attr_expgain" title="@{repeating_XP_$X_expgain}" value="0"></td>
+                    <td><input type="number" class="sheet-midishtext" name="attr_expgain" title="@{repeating_XP_$X_expgain}" value="0"></td>
                 </tr>
                 <tr>
                     <td><h5 style="display: inline;">Prime Requisite Bonus</h5> <input type="number" name="attr_prime" title="@{repeating_XP_$X_prime}" class="sheet-minish" min="0" value="10"><h5 style="display: inline;">%:&ensp;</h5></td>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td><h5>New Exp Total:</h5></td>
-                    <td><input type="text" class="sheet-midishtext" name="attr_expnew" title="@{repeating_XP_$X_expnew}" value="0" readonly></td>
+                    <td><input type="number" class="sheet-midishtext" name="attr_expnew" title="@{repeating_XP_$X_expnew}" value="0" readonly></td>
                 </tr>
             </table>
         </details>

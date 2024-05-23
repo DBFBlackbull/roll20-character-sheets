@@ -69,11 +69,13 @@
     width: 100%;
 }
 .charsheet select.sheet-midishtext,
-.charsheet input.sheet-midishtext {
+.charsheet input.sheet-midishtext,
+.charsheet input[type="number"].sheet-midishtext{
     width: 90px;
 }
 .charsheet select.sheet-midishtext-min,
-.charsheet input.sheet-midishtext-min {
+.charsheet input.sheet-midishtext-min,
+.charsheet input[type="number"].sheet-midishtext-min {
     min-width: 90px;
     width: 100%;
 }
