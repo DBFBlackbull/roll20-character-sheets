@@ -901,8 +901,8 @@ on(XP_FIELDS.map(f => `change:${REPEATING_XP}:${f}`).join(' '), function (eventI
     }
     console.log('exp change happened');
     getAttrs(XP_FIELDS.map(f => `${REPEATING_XP}_${f}`), function (values) {
-        let current = parseFloat(values[`${REPEATING_XP}_expcurrent`]);
-        let gained = parseFloat(values[`${REPEATING_XP}_expgain`]);
+        let current = parseInt(values[`${REPEATING_XP}_expcurrent`]);
+        let gained = parseInt(values[`${REPEATING_XP}_expgain`]);
         let prime = parseInt(values[`${REPEATING_XP}_prime`]);
 
         console.log({
